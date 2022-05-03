@@ -4,6 +4,8 @@ const authorText = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader')
+const toggleSwitch = document.querySelector('input[type="checkbox"]');
+const toggleIcon = document.getElementById('toggle-icon');
 
 //Loading Function
 function loading() {
@@ -42,7 +44,8 @@ async function getQuote() {
        quoteText.innerText = data.quoteText;
        complete();
    } catch (error) {
-       getQuote();
+       //getQuote();
+       console.log(error);
    }
 }
 
@@ -53,9 +56,23 @@ function tweetQuote() {
     window.open(twitterUrl, '_blank');
 }
 
+function switchTheme(event) {
+    if (event.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggleIcon.children[0].textContent = 'Dark Mode';
+      toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      toggleIcon.children[0].textContent = 'Light Mode';
+      toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+    }
+  }
+
 newQuoteBtn.addEventListener('click', getQuote);
 
 twitterBtn.addEventListener('click', tweetQuote);
+
+toggleSwitch.addEventListener('change', switchTheme);
 
 getQuote();
 
