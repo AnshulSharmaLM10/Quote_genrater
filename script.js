@@ -45,7 +45,7 @@ async function getQuote() {
        complete();
    } catch (error) {
        getQuote();
-       console.log(error);
+       //console.log(error);
    }
 }
 
