@@ -44,8 +44,8 @@ async function getQuote() {
        quoteText.innerText = data.quoteText;
        complete();
    } catch (error) {
-       getQuote();
-       //console.log(error);
+       //getQuote();
+       console.log(error);
    }
 }
 
